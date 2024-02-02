@@ -80,17 +80,36 @@ def test_results(results, t = 22+(7/60)):
     print("t = " + str(float(t)))
     print("h(t) = " + str(results[h0] + results[a]*np.cos(to_rads*O*(t)) + results[b]*np.sin(to_rads*O*(t))))
 
-def pred_times_highs_lows(a, b):
-    print(b/a)
-    for n in range(0, 11):
-        t = (1/O)*(np.arctan(float(b/a))+np.pi*n)*to_degs # get arg and convert it back into degrees, then use 1/Ω for t
-        print(t)
+def pred_times_highs_lows(a, b, n):
+    #print(b/a)
+    #for n in range(0, 10):
+    t = (1/O)*(np.arctan(float(b/a))+np.pi*n)*to_degs # get arg and convert it back into degrees, then use 1/Ω for t
+    #print(t)
     return t
 
-results = solve_bristol(0,1)
-test_results(results)
-t = pred_times_highs_lows(results[a], results[b])
-test_results(results, t)
+def tide_high_or_low(a, b, t):
+    hii_t = -a*O*O*np.cos(O*t*to_rads) - b*O*O*np.sin(O*t*to_rads)
+    if hii_t > 0:
+        return "low"
+    else:
+        return "high"
+    
+def pred_height(h0, a, b, t):
+    return h0 + a*np.cos(to_rads*O*(t)) + b*np.sin(to_rads*O*(t))
+
+ 
+predictions = {'Time' : [], 'Height' : [], 'High_or_Low' : []}
+results = solve_bristol(sp = 0, inc = 5) # initial inc 1
+#test_results(results)
+for n in range(1, 29):
+    t = pred_times_highs_lows(results[a], results[b], n)
+    h = pred_height(h0 = results[h0], a = results[a], b = results[b], t = t)
+    high_or_low = tide_high_or_low(results[a], results[b], t)
+    predictions['Time'].append(t)
+    predictions['Height'].append(h)
+    predictions['High_or_Low'].append(high_or_low)
+preds_df = pd.DataFrame(data = predictions)
+preds_df.head()
+preds_df.to_csv("BristolPreds_attempt_2_each_5.csv")
 # results = solve_bristol(10,1)
 # test_results(results)
-
