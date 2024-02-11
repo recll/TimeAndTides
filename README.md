@@ -7,6 +7,7 @@ Supplementary Materials
 - [code/tidal_pred.py](code/tidal_pred.py) is the initial Python code used to develop the method to predict the time and heights of high and low tides.
 - [code/Predict_Tide_Times.ipynb](code/Predict_Tide_Times.ipynb) is the Python notebook used to solve the systems of linear equations for the initial model at Bristol and Donaghadee. It shows more of the data and working for the plots and solutions focused on in the report. Dataframes of more precise values can also be found here.
 - [code/Tide_Times_Lunar_Solar.ipynb](code/Tide_Times_Lunar_Solar.ipynb) is the Python notebook containing the work and solution for the extension part of the course at the Bristol port. It also includes attempts to apply this better model to Donaghadee (to mixed results), and attempts to extend the model further with more constituents that use more data points, however these were not included in the report to keep focus on the main outcomes instead. This also contains some additional dataframes and plots.
+- [code/TideTimesM2S2N2.ipynb](code/TideTimesM2S2N2.ipynb) is an extra notebook that explored using the M2, S2 and N2 constituents together.
 
 ### Plots 
 - [plots/BristolTimeAndErrors_a.pdf](plots/BristolTimeAndErrors_a.pdf) - Figure 1 in the report
